@@ -1,4 +1,7 @@
+# Meep  
+
 # Instalación MeepPods
+
 Para la instalación de los Meep Pods primero tienes que llevarte el repositorio de specs de Meep a tu ordenador, para ello, lanzar la siguiente instrucción:
 
 ~~~
@@ -18,3 +21,9 @@ Por último sólo quedará añadir el pod de Meep que queramos.
 Por ejemplo: Pod `MeepUI` e instalarlo con `pod install`. 
 
 > Si por algún motivo hay un error en la operación al instalar el pod, tendrás que hacer un `pod repo update` y volver a intentarlo.
+
+
+# Desarrollo de un Pod
+
+Todos los Pods de Meep tienen un repositorio en Github, podrán ser clonados como otro cualquier. Una vez que te lo has bajado, verás una estructura similar a la siguiente:
+
