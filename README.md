@@ -27,5 +27,13 @@ Por ejemplo: Pod `MeepUI` e instalarlo con `pod install`.
 
 Todos los Pods de Meep tienen un repositorio en Github, podrán ser clonados como otro cualquier. Una vez que te lo has bajado, verás una estructura similar a la siguiente:
 
-    - Pod
+    - PodName
      - CHANGELOG.md
+     - Example
+     - fastlane
+     - Gemfile
+     - Gemfile.lock
+     - LICENSE
+     - PodName
+     - PodName.podspec
+     - README.md
