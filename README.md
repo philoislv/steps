@@ -1,5 +1,6 @@
 # Meep  
 
+
 # Instalación MeepPods
 
 Para la instalación de los Meep Pods primero tienes que llevarte el repositorio de specs de Meep a tu ordenador, para ello, lanzar la siguiente instrucción:
@@ -37,3 +38,56 @@ Todos los Pods de Meep tienen un repositorio en Github, podrán ser clonados com
      - PodName
      - PodName.podspec
      - README.md
+     
+Los archivos Gemfile, pertenecer el gestor de dependencias (gem) de ruby llamada Bundler, con este nos aseguramos de usar todos la misma versión.
+
+> Por ejemplo de cocoapods.
+
+Por otra parte tenemos la carpeta fastlane, donde se encuentra los archivos para automatizar acciones como por ejemplo la subida de una nueva versión.
+
+Finalmente la carpeta Example contiene el proyecto sobre el cuál desarrollaremos nuestro framework.
+
+
+## Bundler (https://bundler.io/)
+
+Instalar las siguientes dependencias:
+~~~
+// Install bundler
+gem install bundler
+
+// Install deps
+bundle install
+~~~
+
+Una vez instalado Bundler todos los comandos se ejecutaran seguido de:
+
+~~~
+// Run command
+bundle exec <command>
+~~~
+
+
+## Mint (https://github.com/yonaskolb/Mint)
+
+Para la instalación y uso de herramientas globales hacemos uso de Mint, este es un gestor de paquetes que permite instalar y ejecutar paquetes de linea de comandos de Swift.
+
+En este caso su uso principal es para Linter y SwiftLint. Actualmente los proyectos tienen los scripts configurados, por lo que no necesita configuración previa, solamente su instalación.
+
+~~~
+// Install mint
+brew install mint
+
+// Examples
+mint run realm/SwiftLint@0.39.0 // Install and run
+~~~
+
+
+## Desarrollo
+
+Dentro de la carpeta `Example` se encuentra el fichero  `/*.workspace`, es el usado para desarrollar la librería. En el interior hay dos proyectos, uno es el Proyecto principal a desarrollar y el otro Pod.
+
+
+En el proyecto Pods, se encuentra todo el código en desarrollo:
+
+En la carpeta `Classes`se encuentra el código de la librería.
+En la carpeta `Pod` el fichero de configuración `*.podspec`. 
