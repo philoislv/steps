@@ -91,3 +91,9 @@ En el proyecto Pods, se encuentra todo el código en desarrollo:
 
 En la carpeta `Classes`se encuentra el código de la librería.
 En la carpeta `Pod` el fichero de configuración `*.podspec`. 
+
+El proyecto `Example` es sólo de `prueba` para desarrollar la librería y realizar los `Test`. También es necesario este proyecto, ya que si existiese una dependencia a otra librería, este sería el lugar adecuado para instalarla.
+
+> bundle exec pod install
+
+Por último, cualquier cambio en el proyecto de Pod, se verá inmediatamente reflejado en el otro proyecto de `desarrollo` o `prueba` después de realizar un Build.
