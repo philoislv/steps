@@ -172,8 +172,8 @@ En la pregunta ¿Quieres crear una `demo application`? di `YES`:
 
 Después de crear la estructura, hay que crear un nuevo repositorio en `Github.com` (en nuestro caso) y subir la librería. Una vez hecho el `push` de todos los cambios hay que modificar el `*.podspec` que encontrarás dentro del proyecto Pod. Para no olvidar nada, copia el `podspec` de otra librería, revisa y cambia lo necesario, teniendo especial cuidado en `s.source` y `s.source_files`.
 
-~~~
-**NOTE**
+---
+** NOTE **
 
 El código que vamos a crear tiene que estar dentro de la carpeta `Classes` y en un principio esta carpeta no aparece en el proyecto de Pod. Por lo que abre un Finder, y arrastra la carpeta, que estará dentro de `[POD_NAME]`, en Devlopment Pods/[POD_NAME]. Una vez hecho, ya podrás desarrollar el código de la libraría.
-~~~
+---
