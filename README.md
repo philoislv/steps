@@ -94,7 +94,9 @@ En la carpeta `Pod` el fichero de configuración `*.podspec`.
 
 El proyecto `Example` es sólo de `prueba` para desarrollar la librería y realizar los `Test`. También es necesario este proyecto, ya que si existiese una dependencia a otra librería, este sería el lugar adecuado para instalarla.
 
-> bundle exec pod install
+~~~
+bundle exec pod install
+~~~
 
 Por último, cualquier cambio en el proyecto de Pod, se verá inmediatamente reflejado en el otro proyecto de `desarrollo` o `prueba` después de realizar un Build.
 
@@ -173,3 +175,24 @@ En la pregunta ¿Quieres crear una `demo application`? di `YES`:
 Después de crear la estructura, hay que crear un nuevo repositorio en `Github.com` (en nuestro caso) y subir la librería. Una vez hecho el `push` de todos los cambios hay que modificar el `*.podspec` que encontrarás dentro del proyecto Pod. Para no olvidar nada, copia el `podspec` de otra librería, revisa y cambia lo necesario, teniendo especial cuidado en `s.source` y `s.source_files`.
 
 > **_NOTE:_**  El código que vamos a crear tiene que estar dentro de la carpeta `Classes` y en un principio esta carpeta no aparece en el proyecto de Pod. Por lo que abre un Finder, y arrastra la carpeta, que estará dentro de `[POD_NAME]`, en Devlopment Pods/[POD_NAME]. Una vez hecho, ya podrás desarrollar el código de la libraría.
+
+
+### Fastlane
+
+Copiar la carpeta `fastlane`de otro repositorio y modificar las variables de entorno en el archivo `*.env`
+
+
+### SwiftLint
+
+Añadir el fichero `.swiftlint.yml.`, para ello copia el fichero de otro repositorio, después, modifica la rutas para que apunte a la carpeta `Classes` y a la carpeta `Tests`, que está dentro de Example.
+
+~~~
+if which mint >/dev/null; then
+  cd ..
+  mint run realm/SwiftLint@0.39.0 swiftlint autocorrect --format
+else
+  echo "warning: Mint not installed, download from https://github.com/yonaskolb/mint"
+fi
+~~~
+
+Una vez hecho todo, hay que incluir la librería en el specs de Meep. Para ello, sigue exactamente los mismo pasos que en **Actualizar Pod**. Es probable que tengas que hacer un `pod repo update` en el proyecto principal de Meep, para que encuentre la nueva librería.
