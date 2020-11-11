@@ -97,3 +97,83 @@ El proyecto `Example` es sólo de `prueba` para desarrollar la librería y reali
 > bundle exec pod install
 
 Por último, cualquier cambio en el proyecto de Pod, se verá inmediatamente reflejado en el otro proyecto de `desarrollo` o `prueba` después de realizar un Build.
+
+## Lanzar nueva versión
+### Automático (Fastlane)
+
+Los Pods tienen confirurados diferentes lanes (Fastlane) para varias tareas, como realizar un escaneo en el código con linter o lanzar una nueva versión.
+
+Para ellos están los siguentes comandos: 
+
+~~~
+// Ejecutar linter y comprobar que todo está correcto en el pod
+bundle exec fastlane lint
+
+// Lanzar nueva versión (también comprueban el pod y ejecuta el linter)
+bundle exec fastlane patch // i.e. 0.0.0 -> 0.0.1
+bundle exec fastlane minor // i.e. 0.0.0 -> 0.1.0
+bundle exec fastlane major // i.e. 1.0.0 -> 1.0.0
+~~~
+
+### Manual
+
+El código del Pod, se encuentrá dentro de la carpeta `Classes` del proyecto `Pod`, por lo que el desarrollo se realiza dentro de la misma. Una vez finalizados los cambios, para subir de versión se modifica la siguiente línea dentro del fichero `*.podspec`:
+
+~~~
+s.version          = '0.1.1'
+~~~
+
+Para comprobar que todo sigue funcionando usamos la siguiente instrucción
+
+~~~
+pod lib lint [POD_NAME].podspec --allow-warnings
+~~~
+
+Si todo ha ido bien, se hace commit de todos los cambios y push del repositorio (recuerda el git está en la carpeta padre y no dentro de la carpeta Example).
+Lo siguiente es cambiar el tag del repositorio, para ello hacemos lo siguiente en la línea de comandos:
+
+~~~
+git tag 0.1.1 // Usa el mismo número de versión del podspec sin comillas simples
+git push --tags
+~~~
+
+Y, por último, hay que actualizar el spec de los pods de meep, para que se actualice el número de versión de la librería:
+
+~~~
+pod repo push MeepSpecs [POD_NAME].podspec
+~~~
+
+Para probar que todo ha ido bien, `pod update`, en el proyecto principal de Meep.
+
+
+### Número de versión
+
+Para cambiar el número de versión de una librería:
+
+Patch (X.X.+1): Cambios en la librería que no necesiten actualización por parte de la app.
+Por ejemplo, cambiar un fichero de ubicación, cambiar algo de alguna función interna, un refactor que no afecte a la app, etc.
+
+Minor (X.+1.0): Cambios que requieren actualización de la app.
+Por ejemplo, añadir un nuevo parámetro a un constructor que este usando la app, una nueva feature, algo que cambie el comportamiento de algo por completo, etc.
+
+Major (+1.0.0): Cambio que requiere actualización de la app y que ha cambiado la estructura interna de la librería. 
+Por ejemplo, añadir la nueva arquitectura VIPER en MeepComponets.
+
+
+## Crear un Pod
+
+Para crear un Pod lo primero es crear la estructura de la librería:
+
+~~~
+pod lib create [POD_NAME]
+~~~
+
+En la pregunta ¿Quieres crear una `demo application`? di `YES`:
+
+Después de crear la estructura, hay que crear un nuevo repositorio en `Github.com` (en nuestro caso) y subir la librería. Una vez hecho el `push` de todos los cambios hay que modificar el `*.podspec` que encontrarás dentro del proyecto Pod. Para no olvidar nada, copia el `podspec` de otra librería, revisa y cambia lo necesario, teniendo especial cuidado en `s.source` y `s.source_files`.
+
+~~~
+**NOTE**
+
+El código que vamos a crear tiene que estar dentro de la carpeta `Classes` y en un principio esta carpeta no aparece en el proyecto de Pod. Por lo que abre un Finder, y arrastra la carpeta, que estará dentro de `[POD_NAME]`, en Devlopment Pods/[POD_NAME]. Una vez hecho, ya podrás desarrollar el código de la libraría.
+~~~
